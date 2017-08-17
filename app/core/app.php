@@ -30,7 +30,7 @@ class App{
             }
         }
 
-        $this->params = $url ? array_values($url) : array();
+        $this->params = ['get'=>($url ? array_values($url) : array()), 'post'=>($_POST ? array_values($_POST) : array())];
 
         call_user_func_array(array($this->controller, $this->method), $this->params);
 

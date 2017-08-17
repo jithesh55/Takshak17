@@ -262,15 +262,17 @@
 	}
 	var titleFunc = function(){
 		document.getElementById('preloader').style.display = "none";
-		document.getElementById('wrapper').style.display="";
+		document.getElementById('wrapper').style.display="block";
 	    var Dateimg = document.getElementById('Date');
 		var thunder = document.getElementById('thunder');
 		var title = document.getElementById('title');
 		var logo = document.getElementById('logo');
 		var comingSoon = document.getElementById('comingSoon');
-		title.style.height= "300px";
-		title.style.opacity="1";
-		title.style.paddingLeft="0px";
+		setTimeout(function() {
+			title.style.height= "300px";
+			title.style.opacity="1";
+			title.style.paddingLeft="0px";
+		}, 500);
 		document.getElementsByName('bimg3').forEach(function(cloud){
 			cloud.style.opacity="0.2";
 		});
