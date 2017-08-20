@@ -33,6 +33,7 @@
 		z-index: 1;
 		margin-top:150px;
 		zoom:150%;
+		margin-left: 35px;
 	}
 
 	#world {
@@ -236,8 +237,85 @@
 		position: absolute;
 		display:none;
 	}
+	#preloader{
+		width:100%;
+		height:100%;
+		z-index:300;
+		background:url('http://localhost/Takshak17/public/images/0.gif');
+		background-repeat:no-repeat;
+		background-position:center;
+		text-align:center;
+		vertical-align: middle;
+	}
+	/* #wrapper{
+		display:none;
+	} */
+	#loading{
+		padding-top:58vh;
+	}
+	#overlay{
+  position:fixed;
+  z-index:99999;
+  top:0;
+  left:0;
+  bottom:0;
+  right:0;
+  background:rgba(0,0,0,0.9);
+  transition: 1s 0.4s;
+}
+#progress{
+  height:1px;
+  background:#fff;
+  position:absolute;
+  width:0;
+  top:50%;
+  transition: 1s;
+}
+#progstat{
+  font-size:0.7em;
+  letter-spacing: 3px;
+  position:absolute;
+  top:50%;
+  margin-top:-40px;
+  width:100%;
+  text-align:center;
+  color:#fff;
+}
 </style>
 <script>
+	;(function(){
+          function id(v){ return document.getElementById(v); }
+          function loadbar() {
+            var ovrl = id("overlay"),
+                prog = id("progress"),
+                stat = id("progstat"),
+                img = document.images,
+                c = 0,
+                tot = img.length;
+            if(tot == 0) return doneLoading();
+
+            function imgLoaded(){
+              c += 1;
+              var perc = ((100/tot*c) << 0) +"%";
+              prog.style.width = perc;
+              stat.innerHTML = "Loading "+ perc;
+              if(c===tot) return doneLoading();
+            }
+            function doneLoading(){
+              ovrl.style.opacity = 0;
+              setTimeout(function(){ 
+                ovrl.style.display = "none";
+              }, 1200);
+            }
+            for(var i=0; i<tot; i++) {
+              var tImg     = new Image();
+              tImg.onload  = imgLoaded;
+              tImg.onerror = imgLoaded;
+              tImg.src     = img[i].src;
+            }    
+          }
+          document.addEventListener('DOMContentLoaded', loadbar, false);
+        }());
 	var popup = function(element){
 		document.getElementById('aboutdiv').style.display = "flex";
 		if(element == "takshak"){
@@ -256,14 +334,18 @@
 	}
 	var titleFunc = function(){
 		// document.getElementById('bgm').play();
+		// document.getElementById('preloader').style.display = "none";
+		// document.getElementById('wrapper').style.display="block";
 	    var Dateimg = document.getElementById('Date');
 		var thunder = document.getElementById('thunder');
 		var title = document.getElementById('title');
 		var logo = document.getElementById('logo');
 		var comingSoon = document.getElementById('comingSoon');
-		title.style.height= "300px";
-		title.style.opacity="1";
-		title.style.paddingLeft="0px";
+		setTimeout(function() {
+			title.style.height= "300px";
+			title.style.opacity="1";
+			title.style.paddingLeft="0px";
+		}, 500);
 		document.getElementsByName('bimg3').forEach(function(cloud){
 			cloud.style.opacity="0.2";
 		});
@@ -294,20 +376,29 @@
 	<audio id="thunder">
 		<source src="http://www.takshak.in/2017/public/sounds/thuder1.mp3" type="audio/mpeg">
 	</audio>
-	<div id="cloudBase" class="cloud">
-	</div>
-	<div id="viewport" >
-		<div id="world" >
-			<div id="titleBase">
-				<img id="title" src="http://www.takshak.in/2017/public/images/Takshak.png"/>
-				<img id="logo" src="http://www.takshak.in/2017/public/images/logo.png" style="opacity:0"/>
-				<img id="comingSoon" src="http://www.takshak.in/2017/public/images/comingSoon.png" style="opacity:0"/>
-				<img id="Date" src="http://www.takshak.in/2017/public/images/Date.png" style="opacity:0"/><br>
-				<img style="float:left" class="about" src="http://www.takshak.in/2017/public/images/aboutTriggers1.png" onclick="popup('takshak')">
-				<img id="mac" class="about" src="http://www.takshak.in/2017/public/images/aboutTriggers2.png" style="float:left" onclick="popup('mace')">
-				<div id="aboutdiv" style="z-index:5">
-					<img id="AboutTakshak" src="http://www.takshak.in/2017/public/images/AboutTakshak.png" style="opacity:0"/>
-					<img id="AboutMACE" src="http://www.takshak.in/2017/public/images/AboutMACE.png" style="opacity:0"/>
+	<!-- <div id="preloader">
+		<div id="loading">Loading....</div>
+	</div> -->
+	<div id="overlay">
+        <div id="progstat"></div>
+        <div id="progress"></div>
+    </div>
+	<div id="wrapper">
+		<div id="cloudBase" class="cloud">
+		</div>
+		<div id="viewport" >
+			<div id="world" >
+				<div id="titleBase">
+					<img id="title" src="http://www.takshak.in/2017/public/images/Takshak.png"/>
+					<img id="logo" src="http://www.takshak.in/2017/public/images/logo.png" style="opacity:0"/>
+					<img id="comingSoon" src="http://www.takshak.in/2017/public/images/comingSoon.png" style="opacity:0"/>
+					<img id="Date" src="http://www.takshak.in/2017/public/images/Date.png" style="opacity:0"/><br>
+					<img style="float:left" class="about" src="http://www.takshak.in/2017/public/images/aboutTriggers1.png" onclick="popup('takshak')">
+					<img id="mac" class="about" src="http://www.takshak.in/2017/public/images/aboutTriggers2.png" style="float:left" onclick="popup('mace')">
+					<div id="aboutdiv" style="z-index:5">
+						<img id="AboutTakshak" src="http://www.takshak.in/2017/public/images/AboutTakshak.png" style="opacity:0"/>
+						<img id="AboutMACE" src="http://www.takshak.in/2017/public/images/AboutMACE.png" style="opacity:0"/>
+					</div>
 				</div>
 			</div>
 		</div>

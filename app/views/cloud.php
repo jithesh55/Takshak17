@@ -195,6 +195,7 @@
 		margin-top: -10px;
 		padding-left:80px;
 		opacity:0;
+		cursor: pointer;
 	}
 	#AboutTakshak{
 		z-index:10;
@@ -236,14 +237,75 @@
 		text-align:center;
 		vertical-align: middle;
 	}
-	#wrapper{
+	/* #wrapper{
 		display:none;
-	}
+	} */
 	#loading{
 		padding-top:58vh;
 	}
+	#overlay{
+  position:fixed;
+  z-index:99999;
+  top:0;
+  left:0;
+  bottom:0;
+  right:0;
+  background:rgba(0,0,0,0.9);
+  transition: 1s 0.4s;
+}
+#progress{
+  height:1px;
+  background:#fff;
+  position:absolute;
+  width:0;
+  top:50%;
+  transition: 1s;
+}
+#progstat{
+  font-size:0.7em;
+  letter-spacing: 3px;
+  position:absolute;
+  top:50%;
+  margin-top:-40px;
+  width:100%;
+  text-align:center;
+  color:#fff;
+}
 </style>
 <script>
+	;(function(){
+          function id(v){ return document.getElementById(v); }
+          function loadbar() {
+            var ovrl = id("overlay"),
+                prog = id("progress"),
+                stat = id("progstat"),
+                img = document.images,
+                c = 0,
+                tot = img.length;
+            if(tot == 0) return doneLoading();
+
+            function imgLoaded(){
+              c += 1;
+              var perc = ((100/tot*c) << 0) +"%";
+              prog.style.width = perc;
+              stat.innerHTML = "Loading "+ perc;
+              if(c===tot) return doneLoading();
+            }
+            function doneLoading(){
+              ovrl.style.opacity = 0;
+              setTimeout(function(){ 
+                ovrl.style.display = "none";
+              }, 1200);
+            }
+            for(var i=0; i<tot; i++) {
+              var tImg     = new Image();
+              tImg.onload  = imgLoaded;
+              tImg.onerror = imgLoaded;
+              tImg.src     = img[i].src;
+            }    
+          }
+          document.addEventListener('DOMContentLoaded', loadbar, false);
+        }());
 	var popup = function(element){
 		document.getElementById('aboutdiv').style.display = "flex";
 		if(element == "takshak"){
@@ -261,8 +323,8 @@
 		}
 	}
 	var titleFunc = function(){
-		document.getElementById('preloader').style.display = "none";
-		document.getElementById('wrapper').style.display="block";
+		// document.getElementById('preloader').style.display = "none";
+		// document.getElementById('wrapper').style.display="block";
 	    var Dateimg = document.getElementById('Date');
 		var thunder = document.getElementById('thunder');
 		var title = document.getElementById('title');
@@ -303,9 +365,13 @@
 	<audio id="thunder">
 		<source src="http://www.takshak.in/2017/public/sounds/thuder1.mp3" type="audio/mpeg">
 	</audio>
-	<div id="preloader">
+	<!-- <div id="preloader">
 		<div id="loading">Loading....</div>
-	</div>
+	</div> -->
+	<div id="overlay">
+        <div id="progstat"></div>
+        <div id="progress"></div>
+    </div>
 	<div id="wrapper">
 		<div id="cloudBase">
 		</div>

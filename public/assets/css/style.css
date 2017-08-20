@@ -1,4 +1,74 @@
 
+.cloudbase{
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
+
+}
+	.cloudLayer {
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		width: 256px;
+		height: 256px;
+		margin-left: -128px;
+		margin-top: -128px;
+		opacity: 0.7;
+		-webkit-transition: opacity .5s ease-out;
+		-moz-transition: opacity .5s ease-out;
+		-o-transition: opacity .5s ease-out;
+		transition: opacity 0.5s ease-out;
+		z-index: 0;
+	}
+		.movingCloud1{
+			left: 0;
+			-webkit-animation: cloudAnimation linear 20s infinite;
+			animation: cloudAnimation linear 20s infinite;
+		}
+		.cloudLayer .cloudImage{
+			-webkit-animation: rotatecloud linear 80s infinite;
+			animation: rotatecloud linear 80s infinite;
+		}
+	.flashit{
+	-webkit-animation: flash ease-out 7s infinite;
+	animation: flash ease-out 7s infinite;
+	}
+
+	.flashit2{
+	-webkit-animation: flash ease-out 4s infinite;
+	animation: flash ease-out 4s infinite;
+	}
+
+	@-webkit-keyframes flash {
+		from { opacity: 0; } 
+		82% { opacity: 0; }
+		84% { opacity: 0.8; }
+		88% { opacity: 0.2; }
+		95% { opacity: 1; } 
+		to { opacity: 0; }
+	}
+
+	@keyframes flash {
+		from { opacity: 0; } 
+		82% { opacity: 0; }
+		84% { opacity: 0.8; }
+		88% { opacity: 0.2; }
+		95% { opacity: 1; } 
+		to { opacity: 0; }
+	}
+
+	@keyframes cloudAnimation {
+		0% { left:-20%;} 
+		100% { left: 120%; }
+	}
+
+	@keyframes rotatecloud {
+		0% { transform:rotateZ(0deg);} 
+		100% { transform:rotateZ(360deg); }
+	}
+
 body {
     font-family: 'Roboto', sans-serif;
     font-size: 16px;
@@ -42,7 +112,8 @@ img { max-width: 100%; }
 	height: 50px;
 	margin: 0 5px;
 	padding: 16px 20px 0 20px;
-	background: #fd625e;
+	background: rgba(10,10,10,0.7);
+	border: 2px solid rgba(255,255,255,0.5);
 	font-size: 16px;
     font-weight: 300;
     line-height: 16px;

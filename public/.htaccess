@@ -1,9 +1,8 @@
-Options -Multiviews
 RewriteEngine On
 
-RewriteBase /public
-
-RewriteCond %{REQUEST_FILENAME} !-d
+# ensure request is not path to filename or directory
 RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
 
-RewriteRule ^(.+)$ index.php?url=$1a
+# redirect all requests to index.php?url=PATHNAME
+RewriteRule ^(.*)$ index.php?path=$1 [QSA,L]

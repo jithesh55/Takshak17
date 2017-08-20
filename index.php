@@ -1,3 +1,3 @@
 <?php
-
-require_once("public/index.php");
+header('Location:2017/public/');
+?>

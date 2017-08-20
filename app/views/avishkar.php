@@ -44,10 +44,11 @@ $cost = "";
         <title>Avishkar 2017 | Registeration</title>
 
         <!-- CSS -->
+       
         <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
-        <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
-		<link rel="stylesheet" href="assets/css/form-elements.css">
-        <link rel="stylesheet" href="assets/css/style.css">
+        <link rel="stylesheet" href="http://takshak.in/2017/public/assets/bootstrap/css/bootstrap.min.css">
+		<link rel="stylesheet" href="http://takshak.in/2017/public/assets/css/form-elements.css">
+        <link rel="stylesheet" href="http://takshak.in/2017/public/assets/css/style.css">
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -57,16 +58,108 @@ $cost = "";
         <![endif]-->
 
         <!-- Favicon and touch icons -->
-        <link rel="shortcut icon" href="assets/ico/favicon.png">
-        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/ico/apple-touch-icon-144-precomposed.png">
-        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/ico/apple-touch-icon-114-precomposed.png">
-        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/ico/apple-touch-icon-72-precomposed.png">
-        <link rel="apple-touch-icon-precomposed" href="assets/ico/apple-touch-icon-57-precomposed.png">
+        <link rel="shortcut icon" href="http://takshak.in/2017/public/assets/ico/favicon.png">
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://takshak.in/2017/public/assets/ico/apple-touch-icon-144-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://takshak.in/2017/public/assets/ico/apple-touch-icon-114-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://takshak.in/2017/public/assets/ico/apple-touch-icon-72-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" href="http://takshak.in/2017/public/assets/ico/apple-touch-icon-57-precomposed.png">
+        <style>
+            body{
+                background: black;
+            }
+            #overlay{
+  position:fixed;
+  z-index:99999;
+  top:0;
+  left:0;
+  bottom:0;
+  right:0;
+  background:rgba(0,0,0,0.9);
+  transition: 1s 0.4s;
+}
+#progress{
+  height:1px;
+  background:#fff;
+  position:absolute;
+  width:0;
+  top:50%;
+  transition: 1s;
+}
+#progstat{
+  font-size:0.7em;
+  letter-spacing: 3px;
+  position:absolute;
+  top:50%;
+  margin-top:-40px;
+  width:100%;
+  text-align:center;
+  color:#fff;
+}
+ /* #AboutMACE{ */
+		/* z-index:10; */
+		/* position: absolute; */
+		/* top: -10%; */
+		/* -webkit-transition: 10s; */
+		/* -moz-transition: 10s; */
+		/* -o-transition: 10s; */
+		/* transition: 10s; */
+		/* margin-top: -100px; */
+		/* margin-left: 120px; */
+        /* height: 500px; */
+        /* width: 100%; */
+    /* } */ 
+    #AboutMACE{
+        height: 100vh;
+    }
+        </style>
+        <script>
+            ;(function(){
+          function id(v){ return document.getElementById(v); }
+          function loadbar() {
+            var ovrl = id("overlay"),
+                prog = id("progress"),
+                stat = id("progstat"),
+                img = document.images,
+                c = 0,
+                tot = img.length;
+            if(tot == 0) return doneLoading();
 
+            function imgLoaded(){
+              c += 1;
+              var perc = ((100/tot*c) << 0) +"%";
+              prog.style.width = perc;
+              stat.innerHTML = "Loading "+ perc;
+              if(c===tot) return doneLoading();
+            }
+            function doneLoading(){
+              ovrl.style.opacity = 0;
+              setTimeout(function(){ 
+                ovrl.style.display = "none";
+              }, 1200);
+            }
+            for(var i=0; i<tot; i++) {
+              var tImg     = new Image();
+              tImg.onload  = imgLoaded;
+              tImg.onerror = imgLoaded;
+              tImg.src     = img[i].src;
+            }    
+          }
+          document.addEventListener('DOMContentLoaded', loadbar, false);
+        }());
+        </script>
     </head>
 
     <body>
-
+        
+            
+    <div id="overlay">
+        <div id="progstat"></div>
+        <div id="progress"></div>
+    </div>
+        <div class="cloudbase" style="opacity: 0.6">
+            <img class="cloudLayer bimg3 bimg31 lightning flashit" name="bimg3" style="opacity:1;transform:perspective(1000px) translateZ( 845px ) translateX(50px)" src="http://www.takshak.in/2017/public/images/cloud.png" />
+            <img class="cloudLayer bimg3 lightning bimg4 flashit2" name="bimg4" style="opacity:1;transform: perspective(1000px) translateX(-350px) translateY(160px) translateZ( 500px )" src="http://www.takshak.in/2017/public/images/cloud.png"/>
+        </div>
         <!-- Content -->
         <div class="top-content">
         	
@@ -78,13 +171,13 @@ $cost = "";
                             <h1><strong>Avishkar 2017</strong> Registeration</h1>
                             <div class="description">
                             	<p>
-	                            	<b>Avishkar</b> is Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ullamcorper accumsan ex sed sagittis. Vivamus sit amet neque rhoncus, pretium ante a, finibus sapien. Mauris ac magna tristique, tincidunt lorem nec, pellentesque augue. Pellentesque interdum vitae lectus ac viverra. Suspendisse tempus nisl magna, et ornare est vehicula eu. Donec mollis cursus nisl a sollicitudin.
+	                            	<b>Avishkar</b>
                             	</p>
                             </div>
                             <div class="top-big-link">
                                 <a class="btn btn-link-1 launch-modal" href="#" data-modal-id="modal-register">Click Here To Register</a>
-                                <a class="btn btn-link-1" href="#">About Avishkar</a>
-                            	<a class="btn btn-link-1" href="#">About MACE</a>
+                                <a class="btn btn-link-1" target="_blank" href="http://takshak.in/2017/public/brochures/avishkar.pdf">Avishkar Brochure</a>
+                            	<a class="btn btn-link-1 launch-modal" data-modal-id="aboutMACE" href="#">About MACE</a>
                             </div>
                         </div>
                     </div>
@@ -103,20 +196,20 @@ $cost = "";
         					<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
         				</button>
         				<h3 class="modal-title" id="modal-register-label">Fill The Form</h3>
-        				<p>You can give informations and instructions here</p>
+        				<!-- <p>Please fill in the form and wait for confirmation mail</p> -->
         			</div>
         			
         			<div class="modal-body">
         				
-	                    <form role="form" action="" method="post" class="registration-form" enctype="multipart/form-data">
+	                    <form role="form" action="http://takshak.in/2017/public/avishkar/submit" method="post" class="registration-form" enctype="multipart/form-data">
 	                    	<div class="form-group">
 	                    		<label class="sr-only" for="form-project-name">Name Of Project*</label>
 	                        	<input type="text" name="form-project-name" placeholder="Name of Project*" class="form-project-name form-control" id="form-project-name" value="<?=$nameofproject?>">
 	                        </div>
-                            <div class="form-group">
+                            <!-- <div class="form-group">
                                 <label class="sr-only" for="form-college">College / School *</label>
                                 <input type="text" name="form-college" placeholder="College / School *" class="form-college form-control" id="form-college" value="<?=$college?>">
-                            </div>
+                            </div> -->
                             <hr/>
 
                             <div class="form-member">
@@ -125,6 +218,10 @@ $cost = "";
                                 <div class="form-group">
                                     <label class="sr-only" for="form-member-1-name">Name</label>
                                     <input type="text" name="form-member-1-name" placeholder="Name" class="form-member-name form-control" id="form-member-1-name" value="<?=$member1name?>">
+                                </div>
+                                <div class="form-group">
+                                    <label class="sr-only" for="form-member-1-email">E-Mail</label>
+                                    <input type="email" name="form-member-1-email" placeholder="E-Mail" class="form-member-name form-control" id="form-member-1-email" value="<?=$member1name?>">
                                 </div>
                                 <div class="col-sm-8" style="padding-left:0;">
                                     <div class="form-group">
@@ -147,6 +244,10 @@ $cost = "";
                                     <label class="sr-only" for="form-member-2-name">Name</label>
                                     <input type="text" name="form-member-2-name" placeholder="Name" class="form-member-name form-control form-optional" id="form-member-2-name" value="<?=$member2name?>">
                                 </div>
+                                <div class="form-group">
+                                    <label class="sr-only" for="form-member-2-email">Name</label>
+                                    <input type="email" name="form-member-2-email" placeholder="E-Mail" class="form-member-name form-control form-optional" id="form-member-2-email" value="<?=$member2name?>">
+                                </div>
                                 <div class="col-sm-8" style="padding-left:0;">
                                     <div class="form-group">
                                         <label class="sr-only" for="form-member-2-school">School</label>
@@ -167,6 +268,10 @@ $cost = "";
                                 <div class="form-group">
                                     <label class="sr-only" for="form-member-3-name">Name</label>
                                     <input type="text" name="form-member-3-name" placeholder="Name" class="form-member-name form-control form-optional" id="form-member-3-name" value="<?=$member3name?>">
+                                </div>
+                                <div class="form-group">
+                                    <label class="sr-only" for="form-member-3-email">Name</label>
+                                    <input type="email" name="form-member-3-email" placeholder="E-Mail" class="form-member-name form-control form-optional" id="form-member-3-email" value="<?=$member2name?>">
                                 </div>
                                 <div class="col-sm-8" style="padding-left:0;">
                                     <div class="form-group">
@@ -189,6 +294,10 @@ $cost = "";
                                     <label class="sr-only" for="form-member-4-name">Name</label>
                                     <input type="text" name="form-member-4-name" placeholder="Name" class="form-member-name form-control form-optional" id="form-member-4-name" value="<?=$member4name?>" >
                                 </div>
+                                <div class="form-group">
+                                    <label class="sr-only" for="form-member-4-email">Name</label>
+                                    <input type="eamail" name="form-member-4-email" placeholder="E-Mail" class="form-member-name form-control form-optional" id="form-member-4-email" value="<?=$member2name?>">
+                                </div>
                                 <div class="col-sm-8" style="padding-left:0;">
                                     <div class="form-group">
                                         <label class="sr-only" for="form-member-4-school">School</label>
@@ -209,6 +318,10 @@ $cost = "";
                                 <div class="form-group">
                                     <label class="sr-only" for="form-member-5-name">Name</label>
                                     <input type="text" name="form-member-5-name" placeholder="Name" class="form-member-name form-control form-optional" id="form-member-5-name" value="<?=$member5name?>">
+                                </div>
+                                <div class="form-group">
+                                    <label class="sr-only" for="form-member-5-email">Name</label>
+                                    <input type="email" name="form-member-5-email" placeholder="E-Mail" class="form-member-name form-control form-optional" id="form-member-5-email" value="<?=$member2name?>">
                                 </div>
                                 <div class="col-sm-8" style="padding-left:0;">
                                     <div class="form-group">
@@ -231,6 +344,10 @@ $cost = "";
                                     <label class="sr-only" for="form-member-6-name">Name</label>
                                     <input type="text" name="form-member-6-name" placeholder="Name" class="form-member-name form-control form-optional" id="form-member-6-name" value="<?=$member6name?>">
                                 </div>
+                                <div class="form-group">
+                                    <label class="sr-only" for="form-member-6-email">Name</label>
+                                    <input type="email" name="form-member-6-email" placeholder="E-Mail" class="form-member-name form-control form-optional" id="form-member-6-email" value="<?=$member2name?>">
+                                </div>
                                 <div class="col-sm-8" style="padding-left:0;">
                                     <div class="form-group">
                                         <label class="sr-only" for="form-member-6-school">School</label>
@@ -247,7 +364,7 @@ $cost = "";
 
                             
                             <div class="form-member">
-                                <button class="btn green" id="newmember" onclick="addmember()" type="button" ">Add Another Member</button>
+                                <button class="btn green" id="newmember" onclick="addmember()" type="button">Add Another Member</button>
                             </div>
 
                             <hr/>
@@ -286,15 +403,23 @@ $cost = "";
         	</div>
         </div>
 
+        <div class="modal fade" id="aboutMACE" tabindex="-1" role="dialog" aria-labelledby="modal-register-label" aria-hidden="true">
+        	<img id="AboutMACE" src="http://takshak.in/2017/public/images/AboutMACE.png">
+        </div>
+
+
+
+
+    </body>
 
         <!-- Javascript -->
-        <script src="assets/js/jquery-1.11.1.min.js"></script>
-        <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-        <script src="assets/js/jquery.backstretch.min.js"></script>
-        <script src="assets/js/scripts.js"></script>
+        <script src="http://takshak.in/2017/public/assets/js/jquery-1.11.1.min.js"></script>
+        <script src="http://takshak.in/2017/public/assets/bootstrap/js/bootstrap.min.js"></script>
+        <script src="http://takshak.in/2017/public/assets/js/jquery.backstretch.min.js"></script>
+        <script src="http://takshak.in/2017/public/assets/js/scripts.js"></script>
         
         <!--[if lt IE 10]>
-            <script src="assets/js/placeholder.js"></script>
+            <script src="http://takshak.in/2017/public/assets/js/placeholder.js"></script>
         <![endif]-->
 
     </body>
