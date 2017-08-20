@@ -111,6 +111,18 @@ $cost = "";
     #AboutMACE{
         height: 100vh;
     }
+    .trigg1{
+        max-width:25%;
+    }
+    .trigg2{
+        max-width:20%;
+    }
+    .trigg3{
+        max-width:30%;
+    }
+    .trigg4{
+        max-width:25%;
+    }
         </style>
         <script>
             ;(function(){
@@ -167,17 +179,18 @@ $cost = "";
                 <div class="container">
                     <div class="row">
                         <div class="col-sm-8 col-sm-offset-2 text">
-                        	<a class="logo" href="index.html"></a>
+                        	<a href="index.html"><img style="height:100px;" src="http://takshak.in/2017/public/images/Avishkar.png"></a>
                             <h1><strong>Avishkar 2017</strong> Registeration</h1>
-                            <div class="description">
+                            <!-- <div class="description">
                             	<p>
 	                            	<b>Avishkar</b>
                             	</p>
-                            </div>
+                            </div> -->
                             <div class="top-big-link">
-                                <a class="btn btn-link-1 launch-modal" href="#" data-modal-id="modal-register">Click Here To Register</a>
-                                <a class="btn btn-link-1" target="_blank" href="http://takshak.in/2017/public/brochures/avishkar.pdf">Avishkar Brochure</a>
-                            	<a class="btn btn-link-1 launch-modal" data-modal-id="aboutMACE" href="#">About MACE</a>
+                                <a class="btn launch-modal trigg1" href="#" data-modal-id="modal-register"><img src="http://takshak.in/2017/public/images/Register.png"/></a>
+                                <a class="btn trigg2" target="_blank" href="http://takshak.in/2017/public/brochures/avishkar.pdf"><img src="http://takshak.in/2017/public/images/AvishkarBrochure.png"/></a>
+                                <a class="btn launch-modal trigg3" data-modal-id="aboutMACE" href="#"><img src="http://takshak.in/2017/public/images/aboutTriggers1.png"/></a>
+                                <a class="btn launch-modal trigg4" data-modal-id="aboutTakshak" href="#"><img src="http://takshak.in/2017/public/images/aboutTriggers2.png"/></a>
                             </div>
                         </div>
                     </div>
@@ -404,11 +417,12 @@ $cost = "";
         </div>
 
         <div class="modal fade" id="aboutMACE" tabindex="-1" role="dialog" aria-labelledby="modal-register-label" aria-hidden="true">
-        	<img id="AboutMACE" src="http://takshak.in/2017/public/images/AboutMACE.png">
+        	<img id="AboutMACE" src="http://takshak.in/2017/public/images/AboutMACE.png" data-dismiss="modal">
         </div>
 
-
-
+        <div class="modal fade" id="aboutTakshak" tabindex="-1" role="dialog" aria-labelledby="modal-register-label" aria-hidden="true">
+        	<img id="AboutMACE" src="http://takshak.in/2017/public/images/AboutTakshak.png" data-dismiss="modal">
+        </div>
 
     </body>
 
