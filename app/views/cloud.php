@@ -271,6 +271,49 @@
   text-align:center;
   color:#fff;
 }
+/* #marquee{
+	width: 200px; height: 50px; white-space: nowrap;
+	overflow: hidden;
+	overflow-x:-webkit-marquee;
+	-webkit-marquee-direction: forwards;
+	-webkit-marquee-style: scroll;
+	-webkit-marquee-speed: normal;
+	-webkit-marquee-increment: small;
+	-webkit-marquee-repetition: 5;
+	overflow-x: marquee-line;
+	marquee-direction: forward;
+	marquee-style: scroll;
+	marquee-speed: normal;
+	marquee-play-count: 5;
+} */
+.marquee {
+	/* padding-top:300px; */
+    width: 450px;
+    margin: 0 auto;
+    white-space: nowrap;
+    overflow: hidden;
+	box-sizing: border-box;
+	z-index: 100;
+}
+
+.marquee span {
+	padding-top:30px;
+    display: inline-block;
+    padding-left: 100%;  /* show the marquee just outside the paragraph */
+	animation: marquee 15s linear infinite;
+	font-size:30;
+	color: white;
+}
+
+.marquee span:hover {
+    animation-play-state: paused
+}
+
+/* Make it move */
+@keyframes marquee {
+    0%   { transform: translate(0, 0); }
+    100% { transform: translate(-100%, 0); }
+}
 </style>
 <script>
 	;(function(){
@@ -376,6 +419,7 @@
 		<div id="cloudBase">
 		</div>
 		<div id="viewport" >
+			<a class="marquee" href="http://takshak.in/2017/public/avishkar"><span>Registrations for avishkar has already began..... Click here to Register</span></a>
 			<div id="world" >
 				<div id="titleBase">
 					<img id="title" src="http://www.takshak.in/2017/public/images/Takshak.png"/>
@@ -391,6 +435,9 @@
 				</div>
 			</div>
 		</div>
+		<!-- <div id="marquee"> -->
+		<!-- <a id="marquee" href="http://takshak.in/2017/public/avishkar"><span>Registrations for avishkar has already began..... Click here to Register</span></a> -->
+		<!-- </div> -->
 		<img class="cloudLayer bimg3 bimg31" name="bimg3" style="opacity:1" src="http://www.takshak.in/2017/public/images/cloud.png"/>
 		<img class="cloudLayer bimg3 bimg31 lightning flashit" name="bimg3" style="opacity:1" src="http://www.takshak.in/2017/public/images/cloud.png"/>
 		<img class="cloudLayer bimg3 bimg4" name="bimg4" style="opacity:0.2" src="http://www.takshak.in/2017/public/images/cloud.png"/>
