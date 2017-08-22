@@ -85,7 +85,7 @@
 	#title{
 		height:50px;
 		opacity: 0;
-		padding-left: 290px;
+		padding-left: 340px;
 		position: absolute;
 		margin-left: -190px;
 		-webkit-transition: 10s;

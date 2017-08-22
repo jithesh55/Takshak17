@@ -223,6 +223,14 @@ $cost = "";
                                 <label class="sr-only" for="form-college">College / School *</label>
                                 <input type="text" name="form-college" placeholder="College / School *" class="form-college form-control" id="form-college" value="<?=$college?>">
                             </div> -->
+                            <div class="form-group">
+	                    		<label class="sr-only" for="form-mentor-name">Name Of Mentor</label>
+	                        	<input type="text" name="form-mentor-name" placeholder="Name of Mentor" class="form-project-name form-control" id="form-mentor-name">
+                            </div>
+                            <div class="form-group">
+                                <label class="sr-only" for="form-mentor-contact">Contact Of Mentor</label>
+                                <input type="number" name="form-mentor-contact" placeholder="Contact of Mentor" class="form-project-name form-control" id="form-mentor-number">
+                            </div>
                             <hr/>
 
                             <div class="form-member">
