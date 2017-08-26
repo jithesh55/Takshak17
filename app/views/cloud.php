@@ -16,7 +16,7 @@
 		line-height: 16px;
 		overflow: hidden;
 		background: black;
-		zoom:85%;
+		zoom:75%;
 	}
 	#viewport {
 		/* -webkit-perspective: 1000;
@@ -112,7 +112,8 @@
 		transition: 25s;
 		position: relative;
 		z-index: 1;
-		padding-top: 50px;
+        height: 500px;
+		padding-top: 80px;
 		padding-left: 35px;
 	}
 	#comingSoon{
@@ -124,7 +125,7 @@
 		position: relative;
 		z-index: 1;
 		height: 70px;
-		margin-top: -50px;
+		margin-top: -20px;
 	}
 	#Date{
 		-webkit-transition: 25s;
@@ -231,7 +232,7 @@
 		width:100%;
 		height:100%;
 		z-index:300;
-		background:url('http://localhost/Takshak17/public/images/0.gif');
+		background:url('http://takshak.in/2017/public/images/0.gif');
 		background-repeat:no-repeat;
 		background-position:center;
 		text-align:center;
@@ -314,6 +315,179 @@
     0%   { transform: translate(0, 0); }
     100% { transform: translate(-100%, 0); }
 }
+    .close {
+        float: right;
+        font-size: 21px;
+        font-weight: bold;
+        line-height: 1;
+        color: #000;
+        text-shadow: 0 1px 0 #fff;
+        filter: alpha(opacity=20);
+        opacity: .2;
+    }
+    .close:hover,
+    .close:focus {
+        color: #000;
+        text-decoration: none;
+        cursor: pointer;
+        filter: alpha(opacity=50);
+        opacity: .5;
+    }
+    button.close {
+        -webkit-appearance: none;
+        padding: 0;
+        cursor: pointer;
+        background: transparent;
+        border: 0;
+    }
+    .modal-open {
+        overflow: hidden;
+    }
+    .modal {
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 1050;
+        display: none;
+        /*overflow: hidden;*/
+        margin-top: 200px;
+        -webkit-overflow-scrolling: touch;
+        outline: 0;
+    }
+    .modal.fade .modal-dialog {
+        -webkit-transition: -webkit-transform .3s ease-out;
+        -o-transition:      -o-transform .3s ease-out;
+        transition:         transform .3s ease-out;
+        -webkit-transform: translate(0, -25%);
+        -ms-transform: translate(0, -25%);
+        -o-transform: translate(0, -25%);
+        transform: translate(0, -25%);
+    }
+    .modal.in .modal-dialog {
+        -webkit-transform: translate(0, 0);
+        -ms-transform: translate(0, 0);
+        -o-transform: translate(0, 0);
+        transform: translate(0, 0);
+    }
+    .modal-open .modal {
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+    .modal-dialog {
+        position: relative;
+        width: auto;
+        margin: 10px;
+    }
+    .modal-content {
+        position: relative;
+        background-color: #fff;
+        -webkit-background-clip: padding-box;
+        background-clip: padding-box;
+        border: 1px solid #999;
+        border: 1px solid rgba(0, 0, 0, .2);
+        border-radius: 6px;
+        outline: 0;
+        -webkit-box-shadow: 0 3px 9px rgba(0, 0, 0, .5);
+        box-shadow: 0 3px 9px rgba(0, 0, 0, .5);
+    }
+    .modal-backdrop {
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 1040;
+        background-color: #000;
+    }
+    .modal-backdrop.fade {
+        filter: alpha(opacity=0);
+        opacity: 0;
+    }
+    .modal-backdrop.in {
+        filter: alpha(opacity=50);
+        opacity: .5;
+    }
+    .modal-header {
+        min-height: 16.42857143px;
+        padding: 15px;
+        border-bottom: 1px solid #e5e5e5;
+    }
+    .modal-header .close {
+        margin-top: -2px;
+    }
+    .modal-title {
+        margin: 0;
+        line-height: 1.42857143;
+    }
+    .modal-body {
+        position: relative;
+        padding: 15px;
+    }
+    .modal-footer {
+        padding: 15px;
+        text-align: right;
+        border-top: 1px solid #e5e5e5;
+    }
+    .modal-footer .btn + .btn {
+        margin-bottom: 0;
+        margin-left: 5px;
+    }
+    .modal-footer .btn-group .btn + .btn {
+        margin-left: -1px;
+    }
+    .modal-footer .btn-block + .btn-block {
+        margin-left: 0;
+    }
+    .modal-scrollbar-measure {
+        position: absolute;
+        top: -9999px;
+        width: 50px;
+        height: 50px;
+        overflow: scroll;
+    }
+    @media (min-width: 768px) {
+        .modal-dialog {
+            width: 600px;
+            margin: 30px auto;
+        }
+        .modal-content {
+            -webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
+        }
+        .modal-sm {
+            width: 300px;
+        }
+    }
+    @media (min-width: 992px) {
+        .modal-lg {
+            width: 900px;
+        }
+    }
+    /* unvisited link */
+    a:link {
+        color: black;
+        text-decoration: none;
+    }
+
+    /* visited link */
+    a:visited {
+        color: black;
+        text-decoration: none;
+    }
+
+    /* mouse over link */
+    a:hover {
+        color: black;
+        text-decoration: none;
+    }
+
+    /* selected link */
+    a:active {
+        color: black;
+        text-decoration: none;
+    }
 </style>
 <script>
 	;(function(){
@@ -364,6 +538,9 @@
 			AboutTakshak.style.opacity = 0;
 			AboutMACE.style.opacity = 0;
 		}
+		if(e.target.className!="marquee"){
+//            document.getElementById("Registrations").style.display="none";
+        }
 	}
 	var titleFunc = function(){
 		// document.getElementById('preloader').style.display = "none";
@@ -389,12 +566,12 @@
 				logo.style.opacity="1";
 				setTimeout(()=>{
 				    comingSoon.style.opacity="1";
-				    setTimeout((()=>{
+				    setTimeout(()=>{
 				        Dateimg.style.opacity="1";
 						Array.prototype.forEach.call(document.getElementsByClassName('about'), function(about){
 							about.style.opacity = 1;
 						});
-					}));
+					}, 500);
 				}, 1000);
 			}, 1000);
 		}, 4000);
@@ -419,11 +596,12 @@
 		<div id="cloudBase">
 		</div>
 		<div id="viewport" >
-			<a class="marquee" href="http://takshak.in/2017/public/avishkar"><span>Registrations for avishkar has already began..... Click here to Register</span></a>
+			<a class="marquee launch-modal" href="#" data-modal-id="Registrations" onclick="modalOpen()" ><span>Registrations for Events has already began..... Click here to See</span></a>
 			<div id="world" >
 				<div id="titleBase">
 					<img id="title" src="http://www.takshak.in/2017/public/images/Takshak.png"/>
-					<img id="logo" src="http://www.takshak.in/2017/public/images/logo.png" style="opacity:0"/>
+<!--					<img id="logo" src="http://www.takshak.in/2017/public/images/logo.png" style="opacity:0"/>-->
+                    <img id="logo" src="http://takshak.in/2017/public/images/logo.png" style="opacity:0"/>
 					<img id="comingSoon" src="http://www.takshak.in/2017/public/images/comingSoon.png" style="opacity:0"/>
 					<img id="Date" src="http://www.takshak.in/2017/public/images/Date.png" style="opacity:0"/><br>
 					<img class="about" style="float:left" src="http://www.takshak.in/2017/public/images/aboutTriggers1.png" onclick="popup('takshak')">
@@ -432,6 +610,26 @@
 						<img id="AboutTakshak" src="http://www.takshak.in/2017/public/images/AboutTakshak.png" style="opacity:0"/>
 						<img id="AboutMACE" src="http://www.takshak.in/2017/public/images/AboutMACE.png" style="opacity:0"/>
 					</div>
+                    <div class="modal fade" id="Registrations" tabindex="-1" role="dialog" aria-labelledby="modal-register-label" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+
+                                <div class="modal-header">
+                                    <button type="button" onclick="modalClose()" class="close" data-dismiss="modal">
+                                        <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                                    </button>
+                                    <h3 class="modal-title" id="modal-register-label" style="color:black">Registration Links</h3>
+                                </div>
+
+                                <div class="modal-body">
+                                    <a href="http://takshak.in/2017/public/avishkar">Avishkar 2017</a><br><br>
+                                    <a href="http://takshak.in/2017/public/mosc">MOSC 2017</a><br><br>
+                                    <a href="http://takshak.in/2017/public/hdworkshop">Harley Davidson Workshop 2017</a>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
 				</div>
 			</div>
 		</div>
@@ -492,7 +690,6 @@
 		var div = document.getElementById('cloudBase');
 		div.className = 'cloudBase';
 		var size = Math.round( Math.random() * 10 );
-		console.log(size);
 		for( var j = 0; j < 5 + size; j++ ) {
 			var cloud = document.createElement( 'img' );
 			cloud.style.opacity = 0;
@@ -515,7 +712,6 @@
 			var x = 256 - ( Math.random() * 512 );
 			var y = 256 - ( Math.random() * 512 );
 			var z = 1000 - ( Math.random() * 200 );
-			console.log("z: "+z);
 			var a = Math.random() * 360;
 			var s = .75 + Math.random();
 			x *= .2; y *= .2;
@@ -595,7 +791,15 @@
 
 	update();
 
-	</script>
+	var modalOpen = function(){
+	    document.getElementById('Registrations').style.display="block";
+    }
+
+    var modalClose = function(){
+        document.getElementById('Registrations').style.display="none";
+    }
+
+    </script>
 
 	</body>
 </html>

@@ -21,28 +21,30 @@ class avishkar extends controller{
 
     protected function getFile( $filename, $filename2, $formData ) {
         
-        $allowedExts = array("csv","pdf");
+        $allowedExts = array("csv","pdf", "jpg", "jpeg", "JPG");
         $extension2="";
         $temp = explode(".", $_FILES["form-model"]["name"]);
         if($filename2!=""){
             $temp2 = explode(".", $_FILES["form-photo"]["name"]);
-            $extension2 = end($temp2);        
+            $extension2 = end($temp2);
         }
         $extension = end($temp);
         $mimes = array('application/vnd.ms-excel','text/plain','text/csv','text/tsv', 'application/pdf', "image/jpg", "image/jpeg");
      
-        if ((in_array($_FILES['form-model']['type'],$mimes )
-        && in_array($extension, $allowedExts))
-        &&($filename2==""||((in_array($_FILES['form-photo'], $mimes))&&(in_array($extension2, $allowedExts)))))
+        if ((in_array($_FILES['form-model']['type'],$mimes)
+        && in_array($extension, $allowedExts)))
           {
-          if ($_FILES["form-model"]["error"] > 0)
+            if ($_FILES["form-model"]["error"] > 0)
             {
                 echo "Return Code: " . $_FILES["form-model"]["error"] . "<br>";
             }
-          else
+            else
             {   
-                $flag = true;
+                $flag = false;
                 if($filename2!=""){
+                    if((in_array($_FILES['form-photo']['type'], $mimes))&&(in_array($extension2, $allowedExts))){
+                        $flag = true;
+                    }
                     if ($_FILES["form-photo"]["error"] > 0){
                         $flag = false;
                         echo "Return Code: " . $_FILES["form-photo"]["error"] . "<br>";
@@ -74,7 +76,7 @@ class avishkar extends controller{
         }
         $ok = @mail($emailData['to'], $emailData['subject'], $message, $emailData['headers']); 
         if ($ok) { 
-                echo "<p>mail sent to $to!</p>"; 
+                // echo "<p>mail sent to $to!</p>";
                 $this->view("Success");
         } else { 
                 echo "<p>mail could not be sent!</p>"; 
@@ -84,7 +86,7 @@ class avishkar extends controller{
     protected function prepareEmail( $formData ) {
         
         // email fields: to, from, subject, and so on
-        $to = "avishkar@takshak.in";
+        $to = "avishkar@takshak.in, soorajpradeep97@gmail.com";
         $from = $formData['form-member-1-email']; 
         $subject ="New Registration"; 
         $message = "Uploaded File\n";
@@ -102,6 +104,9 @@ class avishkar extends controller{
                 $message .= "Age :". $formData['form-member-'.$i.'-age']."\n";
             }
         }
+        $message .= "Cost of Project in Rupees: ". $formData['form-cost']."\n";
+        $message .= "Previous competitions:". $formData['form-other-competition']."\n";
+        
         $headers = "From: $from";
      
         // boundary 

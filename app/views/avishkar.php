@@ -46,7 +46,7 @@ $cost = "";
         <!-- CSS -->
        
         <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
-        <link rel="stylesheet" href="http://takshak.in/2017/public/assets/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 		<link rel="stylesheet" href="http://takshak.in/2017/public/assets/css/form-elements.css">
         <link rel="stylesheet" href="http://takshak.in/2017/public/assets/css/style.css">
 
@@ -107,9 +107,10 @@ $cost = "";
 		/* margin-left: 120px; */
         /* height: 500px; */
         /* width: 100%; */
-    /* } */ 
+    /* } */
     #AboutMACE{
-        height: 100vh;
+        width: 100vw;
+        height:auto;
     }
     .trigg1{
         max-width:25%;
@@ -125,6 +126,7 @@ $cost = "";
     }
         </style>
         <script>
+            var PAGE = "1.jpg";
             ;(function(){
           function id(v){ return document.getElementById(v); }
           function loadbar() {
@@ -435,8 +437,8 @@ $cost = "";
     </body>
 
         <!-- Javascript -->
-        <script src="http://takshak.in/2017/public/assets/js/jquery-1.11.1.min.js"></script>
-        <script src="http://takshak.in/2017/public/assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
         <script src="http://takshak.in/2017/public/assets/js/jquery.backstretch.min.js"></script>
         <script src="http://takshak.in/2017/public/assets/js/scripts.js"></script>
         

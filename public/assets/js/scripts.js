@@ -3,7 +3,7 @@ jQuery(document).ready(function() {
     /*
         Fullscreen background
     */
-    $.backstretch("assets/img/backgrounds/1.jpg");
+    $.backstretch("assets/img/backgrounds/"+PAGE);
 
     // Create Cloud 
     var size = Math.round(Math.random() * 10);
@@ -61,15 +61,6 @@ jQuery(document).ready(function() {
                     $(this).removeClass('input-error');
                 }
             });
-            if (!$("#formmodelfile").val()) {
-                e.preventDefault();
-                $("#formmodellabel").addClass('input-error');
-            } else {
-                $("#formmodellabel").removeClass('input-error');
-            }
-
-
-
         });
 
     }
