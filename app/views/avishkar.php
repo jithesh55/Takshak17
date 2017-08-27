@@ -109,8 +109,7 @@ $cost = "";
         /* width: 100%; */
     /* } */
     #AboutMACE{
-        width: 100vw;
-        height:auto;
+        height : 100vh;
     }
     .trigg1{
         max-width:25%;

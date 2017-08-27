@@ -109,8 +109,7 @@ $cost = "";
         /* width: 100%; */
     /* } */
     #AboutMACE{
-        width: 100vw;
-        height:auto;
+        height : 100vh;
     }
     .trigg1{
         max-width:25%;
@@ -230,7 +229,13 @@ $cost = "";
                             </div>
                             <div class="form-group">
                                 <label class="sr-only" for="form-preferred-exam-zone">Preferred Exam Zone*</label>
-                                <input type="text" name="form-preferred-exam-zone" placeholder="Preferred Exam Zone*" class="form-project-name form-control" id="form-preferred-exam-zone">
+                                <select class="form-control" name="form-preferred-exam-zone" id="form-preferred-exam-zone">
+                                    <option value="default" selected="1">select*</option>
+                                    <option value="Ernakulam">Ernakulam</option>
+                                    <option value="Thrissur">Thrissur</option>
+                                    <option value="Muvattupuzha">Muvattupuzha</option>
+                                    <option value="Kottayam">Kottayam</option>
+                                </select>
                             </div>
                             <hr/>
 
@@ -261,7 +266,7 @@ $cost = "";
                             </div>
 
                             <hr/>
-	                        <button type="submit" class="btn">Sent The Form &amp; Register</button>
+	                        <button type="submit" class="btn">Send The Form &amp; Register</button>
 	                    </form>
 	                    
         			</div>

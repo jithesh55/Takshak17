@@ -53,7 +53,15 @@ jQuery(document).ready(function() {
 
         $('.registration-form').on('submit', function(e) {
 
-            $(this).find('input[type="text"]:not(.form-optional)').each(function() {
+            $(this).find('input:not(.form-optional)').each(function() {
+                if ($(this).val() == "") {
+                    e.preventDefault();
+                    $(this).addClass('input-error');
+                } else {
+                    $(this).removeClass('input-error');
+                }
+            });
+            $(this).find('select').each(function() {
                 if ($(this).val() == "") {
                     e.preventDefault();
                     $(this).addClass('input-error');
