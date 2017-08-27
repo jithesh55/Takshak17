@@ -61,14 +61,16 @@ jQuery(document).ready(function() {
                     $(this).removeClass('input-error');
                 }
             });
-            $(this).find('select').each(function() {
-                if ($(this).val() == "") {
-                    e.preventDefault();
-                    $(this).addClass('input-error');
-                } else {
-                    $(this).removeClass('input-error');
-                }
-            });
+            if($(this).find('select').length) {
+                $(this).find('select').each(function() {
+                    if ($(this).val() == "default") {
+                        e.preventDefault();
+                        $(this).addClass('input-error');
+                    } else {
+                        $(this).removeClass('input-error');
+                    }
+                });
+            }
         });
 
     }
@@ -81,5 +83,16 @@ function addmember() {
     $('.hidden-form-member').first().fadeIn(function() {
         $(this).removeClass('hidden-form-member');
     });
+    return false;
+}
+
+function addmembers() {
+    if ($('.hidden-form-member').length <= 1) {
+        $("#newmember").hide();
+    }
+    $('.hidden-form-member').first().fadeIn(function() {
+        $(this).removeClass('hidden-form-member');
+    });
+    $('#addbutton').show();
     return false;
 }

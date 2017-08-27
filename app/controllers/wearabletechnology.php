@@ -2,18 +2,19 @@
 /**
  * Created by PhpStorm.
  * User: Ashwin Joseph
- * Date: 24-08-2017
- * Time: 00:25
+ * Date: 27-08-2017
+ * Time: 18:40
  */
 
-class mosc extends controller
+class wearabletechnology extends controller
 {
     public function index(){
-        $this->view("OpenSchool");
+        $this->view("wearableTech");
     }
 
     public function submit($get, $post){
         $formData = $post;
+//        echo "This is under Testing";
         $this->sendMailAsAttachment($formData);
     }
 
@@ -32,20 +33,23 @@ class mosc extends controller
     protected function prepareEmail( $formData ) {
 
         // email fields: to, from, subject, and so on
-        $to = "vishnuvishnu95@gmail.com, s.sruthy345@gmail.com, soorajpradeep97@gmail.com, ashwinkjoseph@gmail.com";
-        $from = "msoc@takshak.in";
-        $subject ="New Registration for MSOC";
+        $to = "soorajpradeep97@gmail.com, ashwinkjoseph@gmail.com";
+        $from = "wearableTechnology@takshak.in";
+        $subject ="New Registration for Wearable Technology Workshop";
         $message = "Uploaded File\n";
-        $message .= "School Name :". $formData['form-school-name']."\n";
+        $message .= "Name :". $formData['form-name']."\n";
         $message .= "E-Mail :". $formData['form-email']."\n";
-        $message .= "Exam Zone :". $formData['form-preferred-exam-zone']."\n";
         $message .= "Contact Number :". $formData['form-contact']."\n";
-        $i = 0;
-        for($i = 1; $i<3; $i++){
+        $message .= "College Name :". $formData['form-college-name']."\n";
+        $message .= "Accomodation :". $formData['form-accomodation']."\n";
+        $message .= "Applying :". $formData['form-as-team-or-not']."\n";
+        for($i = 1; $i<6; $i++){
             if(isset($formData['form-member-1-name'])){
                 $message .= "Student".$i." \n";
                 $message .= "Name :". $formData['form-member-'.$i.'-name']."\n";
-                $message .= "Class :". $formData['form-member-'.$i.'-class']."\n";
+                $message .= "Email :". $formData['form-member-'.$i.'-email']."\n";
+                $message .= "School/College :". $formData['form-member-'.$i.'-school']."\n";
+                $message .= "Age :". $formData['form-member-'.$i.'-age']."\n";
             }
         }
         $headers = "From: $from";
@@ -72,5 +76,4 @@ class mosc extends controller
         return $emailData;
 
     }
-
 }

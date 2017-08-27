@@ -1,6 +1,12 @@
 <html>
 	<head>
 	<title>Takshak'17</title>
+        <!-- Favicon and touch icons -->
+        <link rel="shortcut icon" href="http://takshak.in/2017/public/assets/ico/favicon.png">
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://takshak.in/2017/public/assets/ico/apple-touch-icon-144-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://takshak.in/2017/public/assets/ico/apple-touch-icon-114-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://takshak.in/2017/public/assets/ico/apple-touch-icon-72-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" href="http://takshak.in/2017/public/assets/ico/apple-touch-icon-57-precomposed.png">
 	<style>
 	*{
 		box-sizing: border-box;
@@ -242,9 +248,6 @@
 		width:100%;
 		height:100%;
 		z-index:300;
-		background:url('http://localhost/Takshak17/public/images/0.gif');
-		background-repeat:no-repeat;
-		background-position:center;
 		text-align:center;
 		vertical-align: middle;
 	}
@@ -621,7 +624,8 @@
                                 <div class="modal-body" style="margin-left: 30px">
                                     <a href="http://takshak.in/2017/public/avishkar">Avishkar 2017</a><br><br>
                                     <a href="http://takshak.in/2017/public/mosc">MOSC 2017</a><br><br>
-                                    <a href="http://takshak.in/2017/public/hdworkshop">Harley Davidson Workshop 2017</a>
+                                    <a href="http://takshak.in/2017/public/hdworkshop">Harley Davidson Workshop 2017</a><br><br>
+                                    <a href="http://takshak.in/2017/public/wearabletechnology">Wearable Technology Workshop 2017</a>
                                 </div>
 
                             </div>

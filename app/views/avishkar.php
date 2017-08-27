@@ -416,7 +416,7 @@ $cost = "";
 	                        	<label class="sr-only" for="form-cost">Cost Of The Project In Rupees ( Optional )</label>
 	                        	<input type="text" name="form-cost" placeholder="Cost Of The Project ( Optional )" class="form-cost form-control  form-optional" id="form-cost" value="<?=$cost?>">
 	                        </div>
-	                        <button type="submit" class="btn">Sent The Form &amp; Register</button>
+	                        <button type="submit" class="btn">Send The Form &amp; Register</button>
 	                    </form>
 	                    
         			</div>

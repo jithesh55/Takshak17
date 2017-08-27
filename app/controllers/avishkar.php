@@ -72,13 +72,13 @@ class avishkar extends controller{
         $message = $emailData['message'].$attachContent;
         if($filename2!=""){
             $attachContent2 = $this->pepareAttachment( $filename2,$fileorgname2 );
-            $message = $message.$attachContent2;
         }
-        $ok = @mail($emailData['to'], $emailData['subject'], $message, $emailData['headers']); 
+        $ok = @mail($emailData['to'], $emailData['subject'], $message, $emailData['headers']);
         if ($ok) { 
                 // echo "<p>mail sent to $to!</p>";
                 $this->view("Success");
-        } else { 
+        } else {
+
                 echo "<p>mail could not be sent!</p>"; 
         } 
     }
@@ -86,8 +86,8 @@ class avishkar extends controller{
     protected function prepareEmail( $formData ) {
         
         // email fields: to, from, subject, and so on
-        $to = "avishkar@takshak.in, soorajpradeep97@gmail.com";
-        $from = $formData['form-member-1-email']; 
+        $to = "avishkar@takshak.in, soorajpradeep97@gmail.com, ashwinkjoseph@gmail.com";
+        $from = "avishkar1@takshak.in";
         $subject ="New Registration"; 
         $message = "Uploaded File\n";
         $message .= "Project Name :". $formData['form-project-name']."\n";
