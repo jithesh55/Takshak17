@@ -125,7 +125,7 @@ $cost = "";
         }
     </style>
     <script>
-        var PAGE = "backgroundHDWorkshop.png";
+        var PAGE = "wearableTech.jpg";
         ;(function(){
             function id(v){ return document.getElementById(v); }
             function loadbar() {

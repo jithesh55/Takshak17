@@ -6,10 +6,10 @@
  * Time: 22:47
  */
 
-class robogenesis
+class robogenesis extends controller
 {
     public function index(){
-        $this->view("wearableTech");
+        $this->view("robogenesis");
     }
 
     public function submit($get, $post){
@@ -28,6 +28,18 @@ class robogenesis
         } else {
             echo "<p>mail could not be sent!</p>";
         }
+    }
+
+    public function Success(){
+        $this->view("payuSuccess");
+    }
+
+    public function Failiure(){
+        $this->view("payuFailiure");
+    }
+
+    public function Cancelled(){
+        $this->view("payuCancelled");
     }
 
     protected function prepareEmail( $formData ) {

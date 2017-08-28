@@ -32,7 +32,72 @@ $member6age = "";
 
 $cost = "";
 
+// Merchant key here as provided by Payu
+$MERCHANT_KEY = "rjQUPktU";
+
+// Merchant Salt as provided by Payu
+$SALT = "e5iIg1jwi8";
+
+// End point - change to https://secure.payu.in for LIVE mode
+$PAYU_BASE_URL = "https://test.payu.in";
+
+$action = '';
+
+$posted = array();
+if(!empty($_POST)) {
+    //print_r($_POST);
+    foreach($_POST as $key => $value) {
+        $posted[$key] = $value;
+
+    }
+}
+
+$formError = 0;
+
+if(empty($posted['txnid'])) {
+    // Generate random transaction id
+    $txnid = substr(hash('sha256', mt_rand() . microtime()), 0, 20);
+} else {
+    $txnid = $posted['txnid'];
+}
+$hash = '';
+// Hash Sequence
+$hashSequence = "key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|udf6|udf7|udf8|udf9|udf10";
+if(empty($posted['hash']) && sizeof($posted) > 0) {
+    if(
+        empty($posted['key'])
+        || empty($posted['txnid'])
+        || empty($posted['amount'])
+        || empty($posted['firstname'])
+        || empty($posted['email'])
+        || empty($posted['phone'])
+        || empty($posted['productinfo'])
+        || empty($posted['surl'])
+        || empty($posted['furl'])
+        || empty($posted['service_provider'])
+    ) {
+        $formError = 1;
+    } else {
+        //$posted['productinfo'] = json_encode(json_decode('[{"name":"tutionfee","description":"","value":"500","isRequired":"false"},{"name":"developmentfee","description":"monthly tution fee","value":"1500","isRequired":"false"}]'));
+        $hashVarsSeq = explode('|', $hashSequence);
+        $hash_string = '';
+        foreach($hashVarsSeq as $hash_var) {
+            $hash_string .= isset($posted[$hash_var]) ? $posted[$hash_var] : '';
+            $hash_string .= '|';
+        }
+
+        $hash_string .= $SALT;
+
+
+        $hash = strtolower(hash('sha512', $hash_string));
+        $action = $PAYU_BASE_URL . '/_payment';
+    }
+} elseif(!empty($posted['hash'])) {
+    $hash = $posted['hash'];
+    $action = $PAYU_BASE_URL . '/_payment';
+}
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -41,7 +106,7 @@ $cost = "";
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Wearable Technology 2017 | Registeration</title>
+    <title>Robogenesis Autobots 2017 | Registeration</title>
 
     <!-- CSS -->
 
@@ -125,7 +190,7 @@ $cost = "";
         }
     </style>
     <script>
-        var PAGE = "backgroundHDWorkshop.png";
+        var PAGE = "robogenesis.jpg";
         ;(function(){
             function id(v){ return document.getElementById(v); }
             function loadbar() {
@@ -180,16 +245,16 @@ $cost = "";
         <div class="container">
             <div class="row">
                 <div class="col-sm-8 col-sm-offset-2 text">
-                    <a href="#"><img style="height:150px;" src="http://takshak.in/2017/public/images/wearable.png"></a>
+                    <a href="#"><img style="height:150px;" src="http://takshak.in/2017/public/images/robogenesis.png"></a>
                     <h1><strong>Robo Genesis Workshop 2017</strong> Registration</h1>
                     <div class="description">
                         <p>
-                            <b>Robo Genesis Workshop,</b>
+                            <b>Robo Genesis Workshop,</b> On behalf of the IIT GUWAHATI and ROBOTECH LABS, the ECE department of MAR ATHANASUIS COLLEGE OF ENGINEERING  proudly presentd a 2 day workshop on the  22nd and 23rd of september,2017.
                         </p>
                     </div>
                     <div class="top-big-link">
                         <a class="btn launch-modal trigg1" href="#" data-modal-id="modal-register"><img src="http://takshak.in/2017/public/images/Register.png"/></a>
-                        <a class="btn launch-modal trigg2" data-modal-id="aboutWT" href="#"><img src="http://takshak.in/2017/public/images/aboutwearabletrig.png"/></a>
+                        <a class="btn launch-modal trigg2" data-modal-id="aboutWT" href="#"><img src="http://takshak.in/2017/public/images/aboutratrig.png"/></a>
                         <a class="btn launch-modal trigg3" data-modal-id="aboutTakshak" href="#"><img src="http://takshak.in/2017/public/images/aboutTriggers1.png"/></a>
                         <a class="btn launch-modal trigg4" data-modal-id="aboutMACE" href="#"><img src="http://takshak.in/2017/public/images/aboutTriggers2.png"/></a>
                     </div>
@@ -214,18 +279,47 @@ $cost = "";
 
             <div class="modal-body">
 
-                <form role="form" action="http://takshak.in/2017/public/wearabletechnology/submit" method="post" class="registration-form" enctype="multipart/form-data">
-                    <div class="form-group">
-                        <label class="sr-only" for="form-name">Name*</label>
-                        <input type="text" name="form-name" placeholder="Name*" class="form-project-name form-control" id="form-name" value="<?=$nameofproject?>">
+                <form role="form" action="<?php echo $action; ?>" method="post" class="registration-form" enctype="multipart/form-data">
+                    <input type="hidden" name="key" class="form-optional" value="<?php echo $MERCHANT_KEY ?>" />
+                    <input type="hidden" name="hash" class="form-optional" value="<?php echo $hash ?>"/>
+                    <input type="hidden" name="txnid" class="form-optional" value="<?php echo $txnid ?>" />
+                    <input type="hidden" class="form-optional" name="amount" class="form-optional" value="1350" />
+                    <textarea hidden class="form-optional" name="productinfo">This is a workshop on robotics called the robogenesis autobots held as part of the Annual College Tech Fest of Mar Athanasius College of Engineering</textarea>
+                    <input type="hidden" class="form-optional" name="surl" value="http://localhost/Takshak17/public/robogenesis/Success" size="64"  />
+                    <input type="hidden" class="form-optional" name="furl" value="http://localhost/Takshak17/public/robogenesis/Failiure" size="64" />
+                    <input type="hidden" class="form-optional" name="service_provider" value="payu_paisa" size="64" />
+                    <input type="hidden" class="form-optional" name="curl" value="http://localhost/Takshak17/public/robogenesis/Cancelled" />
+                    <input type="hidden" class="form-optional" name="address1" value="<?php echo (empty($posted['address1'])) ? '' : $posted['address1']; ?>" />
+                    <input type="hidden" class="form-optional" name="address2" value="<?php echo (empty($posted['address2'])) ? '' : $posted['address2']; ?>" />
+                    <input type="hidden" class="form-optional" name="city" value="<?php echo (empty($posted['city'])) ? '' : $posted['city']; ?>" />
+                    <input type="hidden" class="form-optional" name="state" value="<?php echo (empty($posted['state'])) ? '' : $posted['state']; ?>" />
+                    <input type="hidden" class="form-optional" name="country" value="<?php echo (empty($posted['country'])) ? '' : $posted['country']; ?>" />
+                    <input type="hidden" class="form-optional" name="zipcode" value="<?php echo (empty($posted['zipcode'])) ? '' : $posted['zipcode']; ?>" />
+                    <input type="hidden" class="form-optional" name="udf1" value="<?php echo (empty($posted['udf1'])) ? '' : $posted['udf1']; ?>" />
+                    <input type="hidden" class="form-optional" name="udf2" value="<?php echo (empty($posted['udf2'])) ? '' : $posted['udf2']; ?>" />
+                    <input type="hidden" class="form-optional" name="udf3" value="<?php echo (empty($posted['udf3'])) ? '' : $posted['udf3']; ?>" />
+                    <input type="hidden" class="form-optional" name="udf4" value="<?php echo (empty($posted['udf4'])) ? '' : $posted['udf4']; ?>" />
+                    <input type="hidden" class="form-optional" name="udf5" value="<?php echo (empty($posted['udf5'])) ? '' : $posted['udf5']; ?>" />
+                    <input type="hidden" class="form-optional" name="pg" value="<?php echo (empty($posted['pg'])) ? '' : $posted['pg']; ?>" />
+                    <div class="col-sm-6" style="padding-left:0;">
+                        <div class="form-group">
+                            <label class="sr-only" for="form-member-1-school">First Name</label>
+                            <input type="text" name="firstname" id="firstname" class="form-project-name form-control" placeholder="First Name*" value="<?php echo (empty($posted['firstname'])) ? '' : $posted['firstname']; ?>" />
+                        </div>
+                    </div>
+                    <div class="col-sm-6"  style="padding-right:0;padding-left:0;">
+                        <div class="form-group">
+                            <label class="sr-only" for="form-member-1-age">Last Name</label>
+                            <input type="text" id="lastname" class="form-project-name form-control" placeholder="Last Name*" name="lastname" id="lastname" value="<?php echo (empty($posted['lastname'])) ? '' : $posted['lastname']; ?>" />
+                        </div>
                     </div>
                     <div class="form-group">
                         <label class="sr-only" for="form-email">E-Mail*</label>
-                        <input type="email" name="form-email" placeholder="E-Mail*" class="form-project-email form-control" id="form-email">
+                        <input type="email" name="email" placeholder="E-Mail*" class="form-project-email form-control" id="form-email" id="email" value="<?php echo (empty($posted['email'])) ? '' : $posted['email']; ?>" />
                     </div>
                     <div class="form-group">
                         <label class="sr-only" for="form-contact">Contact Number*</label>
-                        <input type="number" name="form-contact" placeholder="Contact Number*" class="form-project-number form-control" id="form-contact-number">
+                        <input type="number" placeholder="Contact Number*" class="form-project-number form-control" id="form-contact-number" name="phone" value="<?php echo (empty($posted['phone'])) ? '' : $posted['phone']; ?>" />
                     </div>
                     <div class="form-group">
                         <label class="sr-only" for="form-college-name">College*</label>
@@ -380,7 +474,9 @@ $cost = "";
 
                     <hr/>
                     <span style="color:red">Payment details will be given later, fee is 1350 Rupees</span>
-                    <button type="submit" class="btn">Send The Form &amp; Register</button>
+                    <?php if(!$hash) { ?>
+                        <input type="submit" class="btn" value="Send The Form &amp; Register" />
+                    <?php } ?>
                 </form>
 
             </div>
@@ -398,7 +494,7 @@ $cost = "";
 </div>
 
 <div class="modal fade" id="aboutWT" tabindex="-1" role="dialog" aria-labelledby="modal-register-label" aria-hidden="true">
-    <img id="AboutMACE" src="http://takshak.in/2017/public/images/aboutwearable.png" data-dismiss="modal">
+    <img id="AboutMACE" src="http://takshak.in/2017/public/images/aboutRBworkshop.png" data-dismiss="modal">
 </div>
 
 </body>
