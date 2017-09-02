@@ -242,7 +242,7 @@ $cost = "";
                         <input type="text" name="form-class" placeholder="Class*" class="form-class form-control" id="form-class">
                     </div>
                     <hr/>
-                    <button type="submit" class="btn">Sent The Form &amp; Register</button>
+                    <button type="submit" class="btn">Send The Form &amp; Register</button>
                 </form>
 
             </div>

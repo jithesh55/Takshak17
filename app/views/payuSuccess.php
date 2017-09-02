@@ -32,10 +32,29 @@ if ($hash != $posted_hash) {
     echo "Invalid Transaction. Please try again";
 }
 else {
-
-    echo "<h3>Thank You. Your order status is ". $status .".</h3>";
-    echo "<h4>Your Transaction ID for this transaction is ".$txnid.".</h4>";
-    echo "<h4>We have received a payment of Rs. " . $amount . ". Your order will soon be shipped.</h4>";
-    var_dump($_POST);
+    try{
+        $handler = new PDO("mysql:host=127.0.0.1;dbname=takshak;charset=utf8", "root", "");
+        $handler->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    }
+    catch(PDOException $e){
+        die("Sorry, Error Establishing Connection To Database");
+    }
+    $query = $handler->prepare("SELECT * FROM robogenesis WHERE txnid = :txnid LIMIT 1");
+    $query->bindParam(":txnid", $txnid);
+    $query->execute();
+//    $result = $query->fetch(PDO::FETCH_ASSOC);
+    if($query->rowCount()==0){
+        die("Sorry, Transaction Failed, please contact organiser");
+    }
+    else{
+        $query = $handler->prepare("UPDATE robogenesis SET valid = 1 WHERE txnid = :txnid");
+        $query->bindParam(":txnid", $txnid);
+        if($query->execute()){
+            echo "<h3>Thank You. Your order status is ". $status .".</h3>";
+            echo "<h4>Your Transaction ID for this transaction is ".$txnid.".</h4>";
+            echo "<h4>We have received a payment of Rs. " . $amount . ". Your order will soon be shipped.</h4>";
+        }
+    }
+//    var_dump($_POST);
 }
 ?>

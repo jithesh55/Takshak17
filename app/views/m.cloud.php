@@ -351,10 +351,11 @@
         z-index: 1050;
         display: none;
         /*overflow: hidden;*/
-        margin-top: 200px;
+        margin-top: 100px;
         -webkit-overflow-scrolling: touch;
         outline: 0;
-        margin-left:100px;
+		margin-left:200px;
+		zoom: 230%;
     }
     .modal.fade .modal-dialog {
         -webkit-transition: -webkit-transform .3s ease-out;
@@ -413,7 +414,8 @@
         min-height: 16.42857143px;
         padding: 15px;
         margin-left: 30px;
-        border-bottom: 1px solid #e5e5e5;
+		border-bottom: 1px solid #e5e5e5;
+		zoom:80%;
     }
     .modal-header .close {
         margin-top: -2px;
@@ -451,7 +453,7 @@
     }
     @media (min-width: 768px) {
         .modal-dialog {
-            width: 600px;
+            width: 300px;
             margin: 30px auto;
         }
         .modal-content {
@@ -626,7 +628,9 @@
                                     <a href="http://takshak.in/2017/public/mosc">MOSC 2017</a><br><br>
                                     <a href="http://takshak.in/2017/public/hdworkshop">Harley Davidson Workshop 2017</a><br><br>
                                     <a href="http://takshak.in/2017/public/wearabletechnology">Wearable Technology Workshop 2017</a><br><br>
-                                    <a href="http://takshak.in/2017/public/robogenesis">Robogenesis Autobots Workshop 2017</a>
+                                    <a href="http://takshak.in/2017/public/robogenesis">Robogenesis Autobots Workshop 2017</a><br><br>
+									<a href="http://takshak.in/2017/public/crossover">Crossover 2017</a><br><br>
+									<a href="http://takshak.in/2017/public/prayaan">Prayaan 2017</a>
                                 </div>
 
                             </div>

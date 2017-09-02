@@ -91,10 +91,114 @@ if(empty($posted['hash']) && sizeof($posted) > 0) {
 
         $hash = strtolower(hash('sha512', $hash_string));
         $action = $PAYU_BASE_URL . '/_payment';
+        try{
+            $handler = new PDO("mysql:host=127.0.0.1;dbname=takshak;charset=utf8", "root", "");
+            $handler->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        }
+        catch(PDOException $e){
+            die("Sorry, Error Establishing Connection To Database");
+        }
+        $query = $handler->prepare("INSERT INTO robogenesis VALUES(id, :txid, :name, :email, :number, :college, :accomodation, :semester, :teamStatus, :member1name, :member1email, :member1school, :member1age, :member2name, :member2email, :member2school, :member2age, :member3name, :member3email, :member3school, :member3age, :member4name, :member4email, :member4school, :member4age, :member5name, :member5email, :member5school, :member5age, :valid)");
+        $query->bindParam(":txid", $posted['txnid']);
+        $name = $_POST['firstname']." ".$_POST['lastname'];
+        $query->bindParam(":name", $name);
+        $query->bindParam(":email", $posted['email']);
+        $query->bindParam(":number", $posted['phone'], PDO::PARAM_INT);
+        $query->bindParam(":college", $_POST['form-college-name']);
+        $query->bindParam(":accomodation", $_POST['form-accomodation']);
+        $query->bindParam(":semester", $_POST['form-college-semester']);
+        $query->bindParam(":teamStatus", $_POST['form-as-team-or-not']);
+        $member = array();
+        if($_POST['form-as-team-or-not']=="as-team"){
+            for($i = 1; $i<6; $i++){
+                if(isset($_POST['form-member-'.$i.'-name'])&&($_POST['form-member-'.$i.'-name']!='')) {
+                    $member[$i] = array("name"=>$_POST['form-member-' . $i . '-name'], "email"=>$_POST['form-member-' . $i . '-email'], "school"=>$_POST['form-member-' . $i . '-school'], "age"=>intval($_POST['form-member-' . $i . '-age']));
+                }
+                else{
+                    $member[$i] = array("name"=>NULL, "email"=>NULL, "school"=>NULL, "age"=>NULL);
+                }
+            }
+        }
+        else{
+            for($i = 1; $i<6; $i++){
+                $member[$i] = array("name"=>NULL, "email"=>NULL, "school"=>NULL, "age"=>NULL);
+            }
+        }
+        $false = false;
+        for($i = 1; $i<6; $i++) {
+            try{
+                if(($member[$i]["name"]=='')||($member[$i]["name"]==NULL)){
+                    throw new PDOException("null values!!", NULL);
+                }
+                else{
+                    $query->bindParam(":member" . $i . "name", $member[$i]["name"]);
+                    $query->bindParam(":member" . $i . "email", $member[$i]["email"]);
+                    $query->bindParam(":member" . $i . "school", $member[$i]["school"]);
+                }
+            }
+            catch(PDOException $e){
+                $query->bindParam(":member" . $i . "name", $member[$i]["name"], PDO::PARAM_NULL);
+                $query->bindParam(":member" . $i . "email", $member[$i]["email"], PDO::PARAM_NULL);
+                $query->bindParam(":member" . $i . "school", $member[$i]["school"], PDO::PARAM_NULL);
+            }
+            try{
+                $query->bindParam(":member" . $i . "age", $member[$i]["age"], PDO::PARAM_INT);
+            }
+            catch (PDOException $e){
+                $query->bindParam(":member" . $i . "age", $member[$i]["age"], PDO::PARAM_NULL);
+            }
+        }
+        $query->bindParam(":valid", $false, PDO::PARAM_BOOL);
+        $query->execute();
     }
 } elseif(!empty($posted['hash'])) {
     $hash = $posted['hash'];
     $action = $PAYU_BASE_URL . '/_payment';
+    try{
+        $handler = new PDO("mysql:host=127.0.0.1;dbname=takshak;charset=utf8", "root", "");
+        $handler->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    }
+    catch(PDOException $e){
+        die("Sorry, Error Establishing Connection To Database");
+    }
+    $query = $handler->prepare("INSERT INTO robogenesis VALUES(id, :txid, :name, :email, :number, :college-name, :accomodation, :semester, :teamStatus, :member-1-name, :member-1-email, :member-1-school, :member-1-age, :member-2-name, :member-2-email, :member-2-school, :member-2-age, :member-3-name, :member-3-email, :member-3-school, :member-3-age, :member-4-name, :member-4-email, :member-4-school, :member-4-age, :member-5-name, :member-5-email, :member-5-school, :member-5-age, :valid)");
+    $query->bindParam(":txid", $posted['txnid']);
+    $name = $_POST['firstname']." ".$_POST['lastname'];
+    $query->bindParam(":name", $name);
+    $query->bindParam(":email", $posted['email']);
+    $query->bindParam(":number", $posted['phone'], PDO::PARAM_INT);
+    $query->bindParam(":college-name", $_POST['form-college-name']);
+    $query->bindParam(":accomodation", $_POST['form-accomodation']);
+    $query->bindParam(":semester", $_POST['form-college-semester']);
+    $query->bindParam(":teamStatus", $_POST['form-as-team-or-not']);
+    if($_POST['form-as-team-or-not']=="as-team"){
+        for($i = 1; $i<6; $i++){
+            if(isset($formData['form-member-'.$i.'-name'])) {
+                $query->bindParam(":member-" . $i . "-name", $_POST['form-member-' . $i . '-name']);
+                $query->bindParam(":member-" . $i . "-email", $_POST['form-member-' . $i . '-email']);
+                $query->bindParam(":member-" . $i . "-school", $_POST['form-member-' . $i . '-school']);
+                $query->bindParam(":member-" . $i . "-age", $_POST['form-member-' . $i . '-age'], PDO::PARAM_INT);
+            }
+            else{
+                $null = NULL;
+                $query->bindParam(":member-" . $i . "-name", $null);
+                $query->bindParam(":member-" . $i . "-email", $null);
+                $query->bindParam(":member-" . $i . "-school", $null);
+                $query->bindParam(":member-" . $i . "-age", $null);
+            }
+        }
+    }
+    else{
+        for($i = 1; $i<6; $i++){
+            $query->bindParam(":member-" . $i . "-name", $null);
+            $query->bindParam(":member-" . $i . "-email", $null);
+            $query->bindParam(":member-" . $i . "-school", $null);
+            $query->bindParam(":member-" . $i . "-age", $null);
+        }
+    }
+    $false = false;
+    $query->bindParam(":valid", $false, PDO::PARAM_BOOL);
+    $query->execute();
 }
 ?>
 
@@ -190,6 +294,16 @@ if(empty($posted['hash']) && sizeof($posted) > 0) {
         }
     </style>
     <script>
+        var hash = '<?php echo $hash ?>';
+        function submitPayuForm() {
+            if(hash == '') {
+                return;
+            }
+            var payuForm = document.forms.payuForm;
+            payuForm.submit();
+        }
+    </script>
+    <script>
         var PAGE = "robogenesis.jpg";
         ;(function(){
             function id(v){ return document.getElementById(v); }
@@ -227,7 +341,7 @@ if(empty($posted['hash']) && sizeof($posted) > 0) {
     </script>
 </head>
 
-<body>
+<body onload="submitPayuForm()">
 
 
 <div id="overlay">
@@ -278,12 +392,18 @@ if(empty($posted['hash']) && sizeof($posted) > 0) {
             </div>
 
             <div class="modal-body">
+                <?php if($formError) { ?>
 
-                <form role="form" action="<?php echo $action; ?>" method="post" class="registration-form" enctype="multipart/form-data">
+                    <span style="color:red">Please fill all mandatory fields.</span>
+                    <br/>
+                    <br/>
+                <?php } ?>
+
+                <form role="form" action="<?php echo $action; ?>" method="post" name="payuForm" class="registration-form" enctype="multipart/form-data">
                     <input type="hidden" name="key" class="form-optional" value="<?php echo $MERCHANT_KEY ?>" />
                     <input type="hidden" name="hash" class="form-optional" value="<?php echo $hash ?>"/>
                     <input type="hidden" name="txnid" class="form-optional" value="<?php echo $txnid ?>" />
-                    <input type="hidden" class="form-optional" name="amount" class="form-optional" value="1350" />
+                    <input type="hidden" class="form-optional" name="amount" value="1350" />
                     <textarea hidden class="form-optional" name="productinfo">This is a workshop on robotics called the robogenesis autobots held as part of the Annual College Tech Fest of Mar Athanasius College of Engineering</textarea>
                     <input type="hidden" class="form-optional" name="surl" value="http://localhost/Takshak17/public/robogenesis/Success" size="64"  />
                     <input type="hidden" class="form-optional" name="furl" value="http://localhost/Takshak17/public/robogenesis/Failiure" size="64" />
@@ -347,22 +467,22 @@ if(empty($posted['hash']) && sizeof($posted) > 0) {
                         <input type="hidden" name="member1" value="1"/>
                         <div class="form-group">
                             <label class="sr-only" for="form-member-1-name">Name</label>
-                            <input type="text" name="form-member-1-name" placeholder="Name" class="form-member-name form-control" id="form-member-1-name" value="<?=$member1name?>">
+                            <input type="text" name="form-member-1-name" placeholder="Name" class="form-member-name form-control form-optional" id="form-member-1-name" value="<?=$member1name?>">
                         </div>
                         <div class="form-group">
                             <label class="sr-only" for="form-member-1-email">E-Mail</label>
-                            <input type="email" name="form-member-1-email" placeholder="E-Mail" class="form-member-name form-control" id="form-member-1-email" value="<?=$member1name?>">
+                            <input type="email" name="form-member-1-email" placeholder="E-Mail" class="form-member-name form-control form-optional" id="form-member-1-email" value="<?=$member1name?>">
                         </div>
                         <div class="col-sm-8" style="padding-left:0;">
                             <div class="form-group">
                                 <label class="sr-only" for="form-member-1-school">School</label>
-                                <input type="text" name="form-member-1-school" placeholder="Name Of College / School " class="form-member-school form-control" id="form-member-1-school" value="<?=$member1school?>">
+                                <input type="text" name="form-member-1-school" placeholder="Name Of College / School " class="form-member-school form-control form-optional" id="form-member-1-school" value="<?=$member1school?>">
                             </div>
                         </div>
                         <div class="col-sm-4"  style="padding-right:0;padding-left:0;">
                             <div class="form-group">
                                 <label class="sr-only" for="form-member-1-age">Age</label>
-                                <input type="text" name="form-member-1-age" placeholder="Age" class="form-member-age form-control" id="form-member-1-age" value="<?=$member1age?>">
+                                <input type="text" name="form-member-1-age" placeholder="Age" class="form-member-age form-control form-optional" id="form-member-1-age" value="<?=$member1age?>">
                             </div>
                         </div>
                     </div>

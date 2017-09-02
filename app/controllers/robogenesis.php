@@ -53,6 +53,7 @@ class robogenesis extends controller
         $message .= "E-Mail :". $formData['form-email']."\n";
         $message .= "Contact Number :". $formData['form-contact']."\n";
         $message .= "College Name :". $formData['form-college-name']."\n";
+        $message .= "Semester :". $formData['form-college-semester']."\n";
         $message .= "Accomodation :". $formData['form-accomodation']."\n";
         $message .= "Applying :". $formData['form-as-team-or-not']."\n";
         for($i = 1; $i<6; $i++){

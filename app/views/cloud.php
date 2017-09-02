@@ -360,7 +360,8 @@
         /*overflow: hidden;*/
         margin-top: 200px;
         -webkit-overflow-scrolling: touch;
-        outline: 0;
+		outline: 0;
+		zoom:200%;
     }
     .modal.fade .modal-dialog {
         -webkit-transition: -webkit-transform .3s ease-out;
@@ -632,7 +633,9 @@
                                     <a href="http://takshak.in/2017/public/mosc">MOSC 2017</a><br><br>
                                     <a href="http://takshak.in/2017/public/hdworkshop">Harley Davidson Workshop 2017</a><br><br>
                                     <a href="http://takshak.in/2017/public/wearabletechnology">Wearable Technology Workshop 2017</a><br><br>
-                                    <a href="http://takshak.in/2017/public/robogenesis">Robogenesis Autobots Workshop 2017</a>
+									<a href="http://takshak.in/2017/public/robogenesis">Robogenesis Autobots Workshop 2017</a><br><br>
+									<a href="http://takshak.in/2017/public/crossover">Crossover 2017</a><br><br>
+									<a href="http://takshak.in/2017/public/prayaan">Prayaan 2017</a>
                                 </div>
 
                             </div>
